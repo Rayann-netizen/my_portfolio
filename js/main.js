@@ -687,3 +687,76 @@ console.log('%c🎮 Portfolio Utils Available:', 'font-size: 12px; color: #FFB80
 console.log('%c  • portfolio.scrollToTop()', 'font-size: 11px; color: #B4BCD0;');
 console.log('%c  • portfolio.scrollToSection("about")', 'font-size: 11px; color: #B4BCD0;');
 console.log('%c  • portfolio.toggleMobileMenu()', 'font-size: 11px; color: #B4BCD0;');
+
+// ================================
+// COPY CONTACT INFO TO CLIPBOARD
+// ================================
+document.querySelectorAll('.contact-link').forEach(link => {
+    // Add copy button
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'copy-btn';
+    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+    copyBtn.title = 'Copy to clipboard';
+    copyBtn.style.cssText = `
+        background: var(--primary-color);
+        border: none;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: all 0.3s ease;
+        display: none;
+    `;
+    
+    link.parentElement.appendChild(copyBtn);
+    
+    // Show copy button on hover
+    link.parentElement.addEventListener('mouseenter', () => {
+        copyBtn.style.display = 'inline-flex';
+        copyBtn.style.alignItems = 'center';
+        copyBtn.style.justifyContent = 'center';
+    });
+    
+    link.parentElement.addEventListener('mouseleave', () => {
+        copyBtn.style.display = 'none';
+    });
+    
+    // Copy on click
+    copyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const text = link.textContent.trim();
+        
+        navigator.clipboard.writeText(text).then(() => {
+            // Show success feedback
+            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+            copyBtn.style.background = 'var(--secondary-color)';
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.textContent = `✅ Copied: ${text}`;
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--secondary-color);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                font-weight: 600;
+                z-index: 10000;
+                animation: slideUp 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                copyBtn.style.background = 'var(--primary-color)';
+                notification.remove();
+            }, 2000);
+        });
+    });
+});
