@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // return await submitWithEmailJS(formData);
         
         // OPTION 2: Using Formspree
-        // return await submitWithFormspree(formData);
+        return await submitWithFormspree(formData);
         
         // OPTION 3: Using Custom Backend API
         // return await submitWithCustomAPI(formData);
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // return await submitWithWeb3Forms(formData);
         
         // TEMPORARY: Simulate submission (REMOVE IN PRODUCTION)
-        return await simulateSubmission(formData);
+        // return await simulateSubmission(formData);
     }
     
     // ================================
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Create a new form
         // 3. Get your form endpoint
         
-        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // Replace with your endpoint
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mqedroev'; // Replace with your endpoint
         
         const response = await fetch(FORMSPREE_ENDPOINT, {
             method: 'POST',
