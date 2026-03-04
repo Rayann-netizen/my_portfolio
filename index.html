@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rayann - Full-stack Web & App Developer. Specializing in React, Node.js, and mobile development. View my portfolio and get in touch!">
+    <meta name="keywords" content="web developer, app developer, full stack developer, React, Node.js, JavaScript, portfolio, mobile development, Rayann">
+    <meta name="author" content="Rayann">
+    <meta name="robots" content="index, follow">
+    <!-- Theme color for Chrome, Edge, and Safari -->
+    <meta name="theme-color" content="#00D9FF">
+    <meta name="theme-color" content="#00D9FF" media="(prefers-color-scheme: dark)">
+    <!-- Fallback for Windows tiles -->
+    <meta name="msapplication-TileColor" content="#00D9FF">
+    <link rel="manifest" href="manifest.json">
+    <link rel="canonical" href="https://rayann-netizen.github.io/my_portfolio/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rayann-netizen.github.io/my_portfolio/">
+    <meta property="og:title" content="Rayann - Web & App Developer Portfolio">
+    <meta property="og:description" content="Full-stack developer building powerful web and mobile applications. Check out my work!">
+    <meta property="og:image" content="https://rayann-netizen.github.io/my_portfolio/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://rayann-netizen.github.io/my_portfolio/">
+    <meta property="twitter:title" content="Rayann - Web & App Developer Portfolio">
+    <meta property="twitter:description" content="Full-stack developer building powerful web and mobile applications">
+    <meta property="twitter:image" content="https://rayann-netizen.github.io/my_portfolio/images/og-image.jpg">
+
+    <title>Rayann - Web & App Developer | Full Stack Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/icon-animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rayann",
+      "jobTitle": "Web & App Developer",
+      "url": "https://rayann-netizen.github.io/my_portfolio",
+      "sameAs": [
+        "https://github.com/Rayann-netizen",
+        "https://linkedin.com/in/rayann-dev"
+      ],
+      "knowsAbout": ["Web Development", "Mobile Development", "JavaScript", "React", "Node.js"]
+    }
+    </script>
+</head>
+<body data-theme="vibe-coder">
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="loader-icon">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="loader-text">Loading Portfolio...</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme Menu">
+            <div class="theme-toggle-icon custom-circle">
+                <span class="circle-segment seg-1"></span>
+                <span class="circle-segment seg-2"></span>
+                <span class="circle-segment seg-3"></span>
+            </div>
+        </button>
+        <div class="theme-menu" id="themeMenu">
+            <div class="theme-menu-header">
+                <h4>Choose Your Style</h4>
+                <button class="close-theme-menu" id="closeThemeMenu" aria-label="Close Theme Menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="theme-options-container">
+                <button class="theme-option active" data-theme="vibe-coder">
+                    <div class="theme-preview vibe-preview">
+                        <span class="preview-dot dot-1"></span>
+                        <span class="preview-dot dot-2"></span>
+                        <span class="preview-dot dot-3"></span>
+                    </div>
+                    <div class="theme-info">
+                        <span class="theme-name">Vibe Coder</span>
+                        <span class="theme-desc">Dark & Neon</span>
+                    </div>
+                    <span class="check-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </span>
+                </button>
+                <button class="theme-option" data-theme="ocean-breeze">
+                    <div class="theme-preview ocean-preview">
+                        <span class="preview-dot dot-1"></span>
+                        <span class="preview-dot dot-2"></span>
+                        <span class="preview-dot dot-3"></span>
+                    </div>
+                    <div class="theme-info">
+                        <span class="theme-name">Ocean Breeze</span>
+                        <span class="theme-desc">Blue & Fresh</span>
+                    </div>
+                    <span class="check-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </span>
+                </button>
+                <button class="theme-option" data-theme="sunset-glow">
+                    <div class="theme-preview sunset-preview">
+                        <span class="preview-dot dot-1"></span>
+                        <span class="preview-dot dot-2"></span>
+                        <span class="preview-dot dot-3"></span>
+                    </div>
+                    <div class="theme-info">
+                        <span class="theme-name">Sunset Glow</span>
+                        <span class="theme-desc">Warm & Vibrant</span>
+                    </div>
+                    <span class="check-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h2><i class="fas fa-code logo-icon"></i> Rayann</h2>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+                <li><a href="#projects"><i class="fas fa-briefcase"></i> Projects</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+ <!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="highlight">Rayann</span></h1>
+            <p class="tagline">
+                <i class="fas fa-laptop-code"></i> Web Developer | 
+                <i class="fas fa-mobile-alt"></i> App Developer | 
+                <i class="fas fa-code"></i> Full Stack Engineer
+            </p>
+            <p class="description">I build powerful web and mobile applications that solve real-world problems with clean code and modern technologies.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-eye"></i> View My Work
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-paper-plane"></i> Get In Touch
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image-wrapper">
+                <img src="./images/portfolio.jpg" alt="Rayann - Web & App Developer">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Rayann, a passionate web and app developer who loves building scalable applications and solving complex problems. I transform ideas into functional, efficient, and user-friendly solutions.</p>
+                    <p>I specialize in full-stack development, creating robust applications from frontend to backend, with a focus on clean code, performance optimization, and modern development practices.</p>
+                    <a href="assets/resume.pdf" class="btn btn-primary" download>
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-code stat-icon"></i>
+                        <h3>15+</h3>
+                        <p>Projects Built</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-laptop-code stat-icon"></i>
+                        <h3>10+</h3>
+                        <p>Apps Deployed</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock stat-icon"></i>
+                        <h3>2+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-cogs"></i> Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Frontend Development</h3>
+                    <p>Building responsive and interactive user interfaces</p>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-html5"></i> HTML5</span>
+                        <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                        <span><i class="fab fa-js"></i> JavaScript</span>
+                        <span><i class="fab fa-react"></i> React</span>
+                        <span><i class="fab fa-vuejs"></i> Vue.js</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Backend Development</h3>
+                    <p>Creating robust server-side applications and APIs</p>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-node-js"></i> Node.js</span>
+                        <span><i class="fab fa-python"></i> Python</span>
+                        <span><i class="fab fa-php"></i> PHP</span>
+                        <span><i class="fas fa-database"></i> SQL</span>
+                        <span><i class="fab fa-laravel"></i> Laravel</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <p>Developing cross-platform mobile applications</p>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-react"></i> React Native</span>
+                        <span><i class="fab fa-android"></i> Android</span>
+                        <span><i class="fab fa-apple"></i> iOS</span>
+                        <span><i class="fas fa-bolt"></i> Flutter</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>DevOps & Tools</h3>
+                    <p>Version control, deployment, and development tools</p>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-git-alt"></i> Git</span>
+                        <span><i class="fab fa-github"></i> GitHub</span>
+                        <span><i class="fab fa-docker"></i> Docker</span>
+                        <span><i class="fab fa-aws"></i> AWS</span>
+                        <span><i class="fas fa-terminal"></i> CLI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/projects/project1.jpg" alt="E-Commerce Platform">
+                        <div class="project-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Full-stack e-commerce application with payment integration, inventory management, and admin dashboard.</p>
+                        <div class="project-tags">
+                            <span class="tag"><i class="fab fa-react"></i> React</span>
+                            <span class="tag"><i class="fab fa-node-js"></i> Node.js</span>
+                            <span class="tag"><i class="fas fa-database"></i> MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Rayann-netizen" class="btn btn-small btn-secondary">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/projects/project2.jpg" alt="Task Management App">
+                        <div class="project-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Task Management App</h3>
+                        <p>Mobile-first task management application with real-time collaboration and push notifications.</p>
+                        <div class="project-tags">
+                            <span class="tag"><i class="fab fa-react"></i> React Native</span>
+                            <span class="tag"><i class="fas fa-fire"></i> Firebase</span>
+                            <span class="tag"><i class="fab fa-js"></i> JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Rayann-netizen" class="btn btn-small btn-secondary">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/projects/project3.jpg" alt="REST API Service">
+                        <div class="project-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>REST API Service</h3>
+                        <p>Scalable RESTful API with authentication, rate limiting, and comprehensive documentation.</p>
+                        <div class="project-tags">
+                            <span class="tag"><i class="fab fa-node-js"></i> Express</span>
+                            <span class="tag"><i class="fas fa-database"></i> PostgreSQL</span>
+                            <span class="tag"><i class="fab fa-docker"></i> Docker</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">
+                                <i class="fas fa-book"></i> Documentation
+                            </a>
+                            <a href="https://github.com/Rayann-netizen" class="btn btn-small btn-secondary">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-address-book"></i> Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Build Something Together</h3>
+                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to contribute to your vision.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="icon"><i class="fas fa-envelope"></i></span>
+                            <div>
+                                <h4>Email</h4>
+                                <p>rayannphat698@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon"><i class="fas fa-phone-alt"></i></span>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>066 412 369</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Phnom Penh, Cambodia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <i class="fas fa-tag"></i>
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <i class="fas fa-comment-dots"></i>
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                    <div id="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="https://github.com/Rayann-netizen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://stackoverflow.com/users/32323768/rayann-phat" target="_blank" rel="noopener noreferrer" aria-label="Stack Overflow">
+                        <i class="fab fa-stack-overflow"></i>
+                    </a>
+                    <a href="https://codepen.io/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="CodePen">
+                        <i class="fab fa-codepen"></i>
+                    </a>
+                </div>
+                <p><i class="fas fa-code"></i> Built with passion by Rayann</p>
+                <p>&copy; 2026 Rayann. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/icon-effects.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

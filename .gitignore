@@ -1,0 +1,43 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node Modules (if using npm)
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Environment Variables
+.env
+.env.local
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Backup Files
+*.bak
+*.backup
+
+# Personal Notes
+notes.txt
+TODO.txt
+personal/
+
+# Large Files
+*.psd
+*.sketch
+*.zipgit 
