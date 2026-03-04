@@ -1230,3 +1230,72 @@ section {
 .d-flex {
     display: flex !important;
 }
+
+/* ================================
+   CLICKABLE CONTACT LINKS
+   ================================ */
+.contact-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    padding: 4px 0;
+}
+
+.contact-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+    transition: width 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.contact-link:hover::before {
+    width: 100%;
+}
+
+.contact-link:active {
+    transform: translateX(5px) scale(0.98);
+}
+
+/* Icon animation on hover */
+.contact-item:hover .icon {
+    transform: scale(1.1) rotate(5deg);
+    animation: iconBounce 0.6s ease;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: scale(1.1) rotate(5deg) translateY(0); }
+    50% { transform: scale(1.1) rotate(5deg) translateY(-5px); }
+}
+
+/* Hover effect for entire contact item */
+.contact-item:hover {
+    transform: translateX(10px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-color);
+}
+
+/* Click feedback */
+.contact-link::after {
+    content: '→';
+    opacity: 0;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover::after {
+    opacity: 1;
+    margin-left: 10px;
+}
