@@ -1,5 +1,5 @@
 // ================================
-// SUPER COOL ICON EFFECTS 🚀
+// SUPER COOL ICON EFFECTS 
 // ================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -491,8 +491,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================
     // CONSOLE EASTER EGG
     // ================================
-    console.log('%c🎨 SUPER COOL ICON EFFECTS LOADED! ✨', 'color: #00D9FF; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #00D9FF;');
-    console.log('%c💡 Secret Features:', 'color: #00FF88; font-size: 14px; font-weight: bold;');
+    console.log('%c SUPER COOL ICON EFFECTS LOADED! ✨', 'color: #00D9FF; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #00D9FF;');
+    console.log('%c Secret Features:', 'color: #00FF88; font-size: 14px; font-weight: bold;');
     console.log('%c  • Double-click logo for rainbow trail', 'color: #B4BCD0; font-size: 12px;');
     console.log('%c  • Click project cards for lightning', 'color: #B4BCD0; font-size: 12px;');
     console.log('%c  • Click icons for particle explosions', 'color: #B4BCD0; font-size: 12px;');

@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             applyTheme(DEFAULT_THEME, false);
         }
         
-        console.log(`🎨 Theme initialized: ${savedTheme}`);
+        console.log(` Theme initialized: ${savedTheme}`);
     }
     
     // ================================
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        console.log(`✅ Theme applied: ${themeName}`);
+        console.log(` Theme applied: ${themeName}`);
     }
     
     // ================================
@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!hasUserPreference) {
             const systemTheme = e.matches ? 'vibe-coder' : 'ocean-breeze';
             applyTheme(systemTheme, false);
-            console.log(`🌓 System theme changed: ${systemTheme}`);
+            console.log(` System theme changed: ${systemTheme}`);
         }
     }
     
@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reset() {
             localStorage.removeItem(STORAGE_KEY);
             applyTheme(DEFAULT_THEME, true);
-            console.log('🔄 Theme reset to default');
+            console.log(' Theme reset to default');
         }
     };
     
@@ -363,12 +363,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================
     // Console Welcome Message
     // ================================
-    console.log('%c🎨 Theme Switcher Loaded!', 'background: #00D9FF; color: #0A0E27; font-size: 14px; padding: 8px; font-weight: bold;');
-    console.log('%c💡 Keyboard Shortcuts:', 'font-size: 12px; color: #00FF88; font-weight: bold;');
+    console.log('%c Theme Switcher Loaded!', 'background: #00D9FF; color: #0A0E27; font-size: 14px; padding: 8px; font-weight: bold;');
+    console.log('%c Keyboard Shortcuts:', 'font-size: 12px; color: #00FF88; font-weight: bold;');
     console.log('%c  • Ctrl/Cmd + K: Toggle theme menu', 'font-size: 11px; color: #B4BCD0;');
     console.log('%c  • ESC: Close theme menu', 'font-size: 11px; color: #B4BCD0;');
     console.log('%c  • Ctrl/Cmd + Shift + T: Cycle themes', 'font-size: 11px; color: #B4BCD0;');
-    console.log('%c🔧 Console Commands:', 'font-size: 12px; color: #FFB800; font-weight: bold;');
+    console.log('%c Console Commands:', 'font-size: 12px; color: #FFB800; font-weight: bold;');
     console.log('%c  • portfolioTheme.apply("theme-name"): Switch theme', 'font-size: 11px; color: #B4BCD0;');
     console.log('%c  • portfolioTheme.cycle(): Cycle through themes', 'font-size: 11px; color: #B4BCD0;');
     console.log('%c  • portfolioTheme.current: Get current theme', 'font-size: 11px; color: #B4BCD0;');
@@ -399,7 +399,7 @@ document.addEventListener('visibilitychange', () => {
         const savedTheme = localStorage.getItem('portfolioTheme');
         
         if (currentTheme !== savedTheme) {
-            console.log('🔄 Theme sync detected');
+            console.log(' Theme sync detected');
             document.body.setAttribute('data-theme', savedTheme);
         }
     }
@@ -430,7 +430,7 @@ window.addEventListener('error', (e) => {
 // ================================
 window.addEventListener('storage', (e) => {
     if (e.key === 'portfolioTheme' && e.newValue) {
-        console.log('🔄 Theme changed in another tab');
+        console.log(' Theme changed in another tab');
         document.body.setAttribute('data-theme', e.newValue);
         
         // Update active option
@@ -465,7 +465,7 @@ if ('ontouchstart' in window) {
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (prefersReducedMotion) {
-    console.log('♿ Reduced motion detected - animations disabled');
+    console.log(' Reduced motion detected - animations disabled');
     
     // Disable theme transition animations
     const style = document.createElement('style');

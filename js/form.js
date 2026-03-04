@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    console.log('📧 Contact form handler loaded!');
+    console.log(' Contact form handler loaded!');
     
     // ================================
     // DOM ELEMENTS
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 await submitForm(formData);
                 
                 // Success
-                showStatus('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
+                showStatus(' Message sent successfully! I\'ll get back to you soon.', 'success');
                 contactForm.reset();
                 
                 // Track submission (Google Analytics - if available)
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!data.name || !data.email || !data.subject || !data.message) {
             return {
                 isValid: false,
-                message: '⚠️ Please fill in all required fields.'
+                message: '! Please fill in all required fields.'
             };
         }
         
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.name.length < CONFIG.minNameLength) {
             return {
                 isValid: false,
-                message: `⚠️ Name must be at least ${CONFIG.minNameLength} characters long.`
+                message: `! Name must be at least ${CONFIG.minNameLength} characters long.`
             };
         }
         
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!emailRegex.test(data.email)) {
             return {
                 isValid: false,
-                message: '⚠️ Please enter a valid email address.'
+                message: '! Please enter a valid email address.'
             };
         }
         
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (suspiciousDomains.includes(emailDomain)) {
             return {
                 isValid: false,
-                message: '⚠️ Please use a valid email address.'
+                message: '! Please use a valid email address.'
             };
         }
         
@@ -127,14 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.message.length < CONFIG.minMessageLength) {
             return {
                 isValid: false,
-                message: `⚠️ Message must be at least ${CONFIG.minMessageLength} characters long.`
+                message: `! Message must be at least ${CONFIG.minMessageLength} characters long.`
             };
         }
         
         if (data.message.length > CONFIG.maxMessageLength) {
             return {
                 isValid: false,
-                message: `⚠️ Message must be less than ${CONFIG.maxMessageLength} characters.`
+                message: `! Message must be less than ${CONFIG.maxMessageLength} characters.`
             };
         }
         
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (hasSpam) {
             return {
                 isValid: false,
-                message: '⚠️ Your message contains suspicious content.'
+                message: '! Your message contains suspicious content.'
             };
         }
         
@@ -573,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (now - lastSubmitTime < MIN_SUBMIT_INTERVAL) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                showStatus('⚠️ Please wait before submitting again.', 'error');
+                showStatus('! Please wait before submitting again.', 'error');
                 return false;
             }
             lastSubmitTime = now;
@@ -614,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 subjectInput.value = draft.subject || '';
                 messageInput.value = draft.message || '';
                 
-                console.log('📝 Draft loaded from local storage');
+                console.log('Draft loaded from local storage');
             } else {
                 localStorage.removeItem(DRAFT_KEY);
             }

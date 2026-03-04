@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    console.log('%c🚀 Portfolio JavaScript Loaded!', 'background: #00D9FF; color: #0A0E27; font-size: 16px; padding: 10px; font-weight: bold;');
+    console.log('%c Portfolio JavaScript Loaded!', 'background: #00D9FF; color: #0A0E27; font-size: 16px; padding: 10px; font-weight: bold;');
     
     // ================================
     // MOBILE NAVIGATION TOGGLE
@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (prefersReducedMotion) {
         // Disable animations
         document.documentElement.style.setProperty('--transition', 'none');
-        console.log('ℹ️ Reduced motion detected - animations disabled');
+        console.log(' Reduced motion detected - animations disabled');
         
         // Add class to body for CSS targeting
         document.body.classList.add('reduced-motion');
@@ -313,11 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================
     // CONSOLE WELCOME MESSAGE
     // ================================
-    console.log('%c👋 Welcome to My Portfolio! ', 'background: #00D9FF; color: #0A0E27; font-size: 20px; padding: 10px; font-weight: bold;');
-    console.log('%c🚀 Interested in the code?', 'font-size: 14px; color: #00FF88; font-weight: bold;');
-    console.log('%c📧 Let\'s connect!', 'font-size: 14px; color: #FF2E97; font-weight: bold;');
+    console.log('%c Welcome to My Portfolio! ', 'background: #00D9FF; color: #0A0E27; font-size: 20px; padding: 10px; font-weight: bold;');
+    console.log('%c Interested in the code?', 'font-size: 14px; color: #00FF88; font-weight: bold;');
+    console.log('%c Let\'s connect!', 'font-size: 14px; color: #FF2E97; font-weight: bold;');
     console.log('%c�� GitHub: https://github.com/Rayann-netizen', 'font-size: 12px; color: #00D9FF;');
-    console.log('%c💡 Keyboard Shortcuts:', 'font-size: 12px; color: #FFB800; font-weight: bold;');
+    console.log('%c Keyboard Shortcuts:', 'font-size: 12px; color: #FFB800; font-weight: bold;');
     console.log('%c  • Ctrl/Cmd + K: Toggle theme menu', 'font-size: 11px; color: #B4BCD0;');
     console.log('%c  • ESC: Close menus', 'font-size: 11px; color: #B4BCD0;');
     console.log('%c  • Ctrl/Cmd + Shift + T: Cycle themes', 'font-size: 11px; color: #B4BCD0;');
@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!link.href.includes(window.location.hostname)) {
             link.addEventListener('click', (e) => {
                 const url = link.href;
-                console.log(`🔗 Outbound click: ${url}`);
+                console.log(` Outbound click: ${url}`);
                 
                 // Track with Google Analytics if available
                 if (typeof gtag !== 'undefined') {
@@ -505,12 +505,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // HANDLE PRINT EVENTS
     // ================================
     window.addEventListener('beforeprint', () => {
-        console.log('🖨️ Preparing to print...');
+        console.log(' Preparing to print...');
         document.body.classList.add('printing');
     });
     
     window.addEventListener('afterprint', () => {
-        console.log('✅ Print complete');
+        console.log('Print complete');
         document.body.classList.remove('printing');
     });
 
@@ -518,12 +518,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ONLINE/OFFLINE DETECTION
     // ================================
     window.addEventListener('online', () => {
-        console.log('🟢 Back online!');
+        console.log(' Back online!');
         showConnectionStatus('You are back online!', 'success');
     });
     
     window.addEventListener('offline', () => {
-        console.log('🔴 You are offline');
+        console.log(' You are offline');
         showConnectionStatus('You are offline. Some features may not work.', 'warning');
     });
     
@@ -574,7 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 navigator.clipboard.writeText(text).then(() => {
                     // Show copied notification
                     const notification = document.createElement('div');
-                    notification.textContent = '✅ Email copied to clipboard!';
+                    notification.textContent = ' Email copied to clipboard!';
                     notification.style.cssText = `
                         position: fixed;
                         bottom: 20px;
@@ -606,11 +606,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // ERROR HANDLING
     // ================================
     window.addEventListener('error', (e) => {
-        console.error('❌ JavaScript Error:', e.message, 'at', e.filename, 'line', e.lineno);
+        console.error(' JavaScript Error:', e.message, 'at', e.filename, 'line', e.lineno);
     });
     
     window.addEventListener('unhandledrejection', (e) => {
-        console.error('❌ Unhandled Promise Rejection:', e.reason);
+        console.error(' Unhandled Promise Rejection:', e.reason);
     });
 
     // ================================
@@ -618,17 +618,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
-            console.log('👋 Page hidden');
+            console.log(' Page hidden');
         } else {
-            console.log('👀 Page visible');
+            console.log(' Page visible');
         }
     });
 
     // ================================
     // FINAL INITIALIZATION LOG
     // ================================
-    console.log('%c✅ Main JavaScript Initialized Successfully!', 'background: #00FF88; color: #0A0E27; font-size: 14px; padding: 8px; font-weight: bold;');
-    console.log('%c📊 All features loaded:', 'font-size: 12px; color: #B4BCD0; font-weight: bold;');
+    console.log('%c Main JavaScript Initialized Successfully!', 'background: #00FF88; color: #0A0E27; font-size: 14px; padding: 8px; font-weight: bold;');
+    console.log('%c All features loaded:', 'font-size: 12px; color: #B4BCD0; font-weight: bold;');
     console.log('%c  ✓ Mobile navigation', 'font-size: 11px; color: #00FF88;');
     console.log('%c  ✓ Smooth scrolling', 'font-size: 11px; color: #00FF88;');
     console.log('%c  ✓ Active link detection', 'font-size: 11px; color: #00FF88;');
@@ -683,7 +683,7 @@ window.portfolio = {
     author: 'Rayann'
 };
 
-console.log('%c🎮 Portfolio Utils Available:', 'font-size: 12px; color: #FFB800; font-weight: bold;');
+console.log('%c Portfolio Utils Available:', 'font-size: 12px; color: #FFB800; font-weight: bold;');
 console.log('%c  • portfolio.scrollToTop()', 'font-size: 11px; color: #B4BCD0;');
 console.log('%c  • portfolio.scrollToSection("about")', 'font-size: 11px; color: #B4BCD0;');
 console.log('%c  • portfolio.toggleMobileMenu()', 'font-size: 11px; color: #B4BCD0;');
@@ -735,7 +735,7 @@ document.querySelectorAll('.contact-link').forEach(link => {
             
             // Show notification
             const notification = document.createElement('div');
-            notification.textContent = `✅ Copied: ${text}`;
+            notification.textContent = `Copied: ${text}`;
             notification.style.cssText = `
                 position: fixed;
                 bottom: 20px;

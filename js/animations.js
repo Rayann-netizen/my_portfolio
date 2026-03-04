@@ -213,5 +213,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Uncomment to enable scroll progress indicator
     // createScrollProgress();
 
-    console.log('✅ Animations loaded successfully!');
+    console.log('Animations loaded successfully!');
 });
