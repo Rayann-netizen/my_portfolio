@@ -8,7 +8,7 @@ A modern, fully responsive portfolio website showcasing my skills as a **Full-St
 
 **Live Site:** [https://rayann-netizen.github.io/my_portfolio](https://rayann-netizen.github.io/my_portfolio)
 
-## ✨ Features
+## Features
 
 ### Design & UI
 - **3 Theme System** - Switch between Vibe Coder (Dark Neon), Ocean Breeze (Blue), and Sunset Glow (Warm)
@@ -19,7 +19,7 @@ A modern, fully responsive portfolio website showcasing my skills as a **Full-St
 - **Interactive Cards** - Hover effects with 3D tilt animations
 - **Theme Persistence** - Remembers your theme choice using localStorage
 
-### 💻 Technical Features
+### Technical Features
 - **Pure Vanilla JavaScript** - No frameworks, just clean code
 - **CSS Custom Properties** - Easy theme customization
 - **Intersection Observer API** - Efficient scroll animations
@@ -28,7 +28,7 @@ A modern, fully responsive portfolio website showcasing my skills as a **Full-St
 - **Cross-browser Compatible** - Works on all modern browsers
 - **Performance Optimized** - Fast loading, lazy images, minimal JS
 
-### 📱 Sections
+### Sections
 1. **Hero** - Eye-catching introduction with animated gradient name
 2. **About** - Professional bio with experience statistics
 3. **Skills** - Tech stack with animated icons and tags
@@ -36,7 +36,7 @@ A modern, fully responsive portfolio website showcasing my skills as a **Full-St
 5. **Contact** - Form with validation and multiple contact methods
 6. **Footer** - Social links and copyright information
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **HTML5** - Semantic markup
@@ -49,4 +49,4 @@ A modern, fully responsive portfolio website showcasing my skills as a **Full-St
 - **Intersection Observer API** - Scroll animations
 - **LocalStorage API** - Theme persistence
 
-## 📁 Project Structure
+## Project Structure
