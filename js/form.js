@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             if (honeypotField.value !== '') {
                 e.preventDefault();
-                console.warn('🤖 Bot detected via honeypot');
+                console.warn(' Bot detected via honeypot');
                 showStatus('⚠️ Error processing form. Please try again.', 'error');
                 return false;
             }
@@ -667,8 +667,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================
     // CONSOLE LOG
     // ================================
-    console.log('%c✅ Contact Form Handler Initialized!', 'background: #00FF88; color: #0A0E27; font-size: 14px; padding: 8px; font-weight: bold;');
-    console.log('%c📝 Features enabled:', 'font-size: 12px; color: #B4BCD0; font-weight: bold;');
+    console.log('%c Contact Form Handler Initialized!', 'background: #00FF88; color: #0A0E27; font-size: 14px; padding: 8px; font-weight: bold;');
+    console.log('%c Features enabled:', 'font-size: 12px; color: #B4BCD0; font-weight: bold;');
     console.log('%c  ✓ Form validation', 'font-size: 11px; color: #00FF88;');
     console.log('%c  ✓ Real-time feedback', 'font-size: 11px; color: #00FF88;');
     console.log('%c  ✓ Character counter', 'font-size: 11px; color: #00FF88;');
