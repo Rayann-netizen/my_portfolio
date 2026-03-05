@@ -1,5 +1,5 @@
 /* ================================
-   ENHANCED RESPONSIVE DESIGN
+   RESPONSIVE DESIGN - MOBILE OPTIMIZED
    ================================ */
 
 /* Ensure all elements scale properly */
@@ -8,7 +8,15 @@
 }
 
 html {
-    font-size: 16px; /* Base font size */
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Improve touch targets */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Large Desktop (1200px and above) */
@@ -83,10 +91,23 @@ html {
     }
 }
 
-/* Mobile (below 768px) - CRITICAL BREAKPOINT */
+/* ================================
+   MOBILE SPECIFIC FIXES (below 768px)
+   ================================ */
 @media (max-width: 768px) {
     html {
         font-size: 14px;
+    }
+    
+    /* Disable intensive animations on mobile */
+    * {
+        animation-duration: 0.3s !important;
+        transition-duration: 0.3s !important;
+    }
+    
+    /* Disable parallax on mobile */
+    .hero::before {
+        animation: none !important;
     }
     
     /* Navigation */
@@ -98,17 +119,19 @@ html {
         position: fixed;
         top: 60px;
         right: -100%;
-        width: 280px;
+        width: 100%;
+        max-width: 300px;
         height: calc(100vh - 60px);
         background: var(--card-bg);
         backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 30px 20px;
         gap: 15px;
-        transition: right 0.3s ease;
-        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+        transition: right 0.3s ease-in-out;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
         z-index: 999;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     .nav-links.active {
@@ -121,12 +144,18 @@ html {
     
     .nav-links a {
         display: block;
-        padding: 12px 15px;
+        padding: 15px 20px;
         border-radius: 8px;
         transition: all 0.3s ease;
+        font-size: 1.1rem;
+        /* Larger touch targets */
+        min-height: 48px;
+        display: flex;
+        align-items: center;
     }
     
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a:active {
         background: rgba(0, 217, 255, 0.1);
     }
     
@@ -136,6 +165,12 @@ html {
         gap: 5px;
         cursor: pointer;
         z-index: 1000;
+        padding: 10px;
+        /* Larger touch target */
+        min-width: 48px;
+        min-height: 48px;
+        justify-content: center;
+        align-items: center;
     }
     
     .hamburger span {
@@ -197,6 +232,8 @@ html {
         width: 220px;
         height: 220px;
         margin: 0 auto;
+        /* Reduce animation intensity */
+        animation-duration: 6s !important;
     }
     
     .hero-buttons {
@@ -208,6 +245,8 @@ html {
     .hero-buttons .btn {
         width: 100%;
         justify-content: center;
+        /* Better touch target */
+        min-height: 48px;
     }
     
     /* Sections */
@@ -250,6 +289,11 @@ html {
         gap: 25px;
     }
     
+    /* Disable 3D tilt on mobile */
+    .project-card {
+        transform: none !important;
+    }
+    
     /* Contact Section */
     .contact-content {
         grid-template-columns: 1fr;
@@ -259,41 +303,92 @@ html {
         padding: 30px 20px;
     }
     
+    /* Improve form inputs for mobile */
+    .input-with-icon input,
+    .input-with-icon textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 15px 15px 15px 45px;
+    }
+    
     /* Footer */
     .social-links {
         flex-wrap: wrap;
         justify-content: center;
     }
     
-    /* Theme Switcher */
+    .social-links a {
+        /* Better touch targets */
+        min-width: 48px;
+        min-height: 48px;
+    }
+    
+    /* ================================
+       THEME SWITCHER - MOBILE FIX
+       ================================ */
     .theme-switcher {
-        bottom: 80px;
-        right: 20px;
+        bottom: 100px;
+        right: 15px;
+        z-index: 9999;
     }
     
     .theme-toggle {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
+        /* Better touch target */
+        min-width: 60px;
+        min-height: 60px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     
     .theme-menu {
-        right: -10px;
-        min-width: 260px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        width: 100%;
+        max-height: 70vh;
+        border-radius: 20px 20px 0 0;
+        transform: translateY(100%);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .theme-menu.active {
+        transform: translateY(0);
+    }
+    
+    .theme-option {
+        padding: 20px;
+        margin-bottom: 12px;
+        /* Better touch target */
+        min-height: 80px;
+    }
+    
+    .close-theme-menu {
+        /* Better touch target */
+        min-width: 40px;
+        min-height: 40px;
     }
     
     /* Scroll to Top */
     .scroll-top-btn {
         bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
         font-size: 18px;
+        /* Better touch target */
+        min-width: 50px;
+        min-height: 50px;
     }
     
     /* Typography Adjustments */
     .btn {
         padding: 12px 24px;
         font-size: 0.95rem;
+        /* Better touch target */
+        min-height: 48px;
     }
 }
 
@@ -357,21 +452,22 @@ html {
     .input-with-icon input,
     .input-with-icon textarea {
         padding: 12px 12px 12px 40px;
-        font-size: 0.9rem;
+        font-size: 16px;
     }
     
     .nav-links {
-        width: 240px;
+        width: 100%;
+        max-width: 280px;
         padding: 25px 15px;
     }
     
     .theme-toggle {
-        width: 45px;
-        height: 45px;
+        width: 55px;
+        height: 55px;
     }
     
     .theme-menu {
-        min-width: 240px;
+        max-height: 60vh;
     }
 }
 
@@ -395,7 +491,46 @@ html {
     }
     
     .nav-links {
-        width: 220px;
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* ================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ================================ */
+@media (hover: none) and (pointer: coarse) {
+    /* All interactive elements get bigger touch targets */
+    button,
+    a,
+    .btn,
+    .nav-links a,
+    .social-links a,
+    .hamburger,
+    .theme-toggle,
+    .theme-option,
+    .scroll-top-btn {
+        min-width: 48px;
+        min-height: 48px;
+    }
+    
+    /* Disable hover-only effects */
+    .project-card:hover {
+        transform: none;
+    }
+    
+    .skill-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* Simplify animations for performance */
+    * {
+        animation-duration: 0.3s !important;
+    }
+    
+    /* Disable particle effects on mobile */
+    .particle {
+        display: none;
     }
 }
 
@@ -426,32 +561,30 @@ html {
     
     .nav-links {
         height: 100vh;
-    }
-}
-
-/* Touch Device Optimizations */
-@media (hover: none) and (pointer: coarse) {
-    .btn {
-        min-height: 44px; /* Minimum touch target size */
+        padding: 20px 15px;
     }
     
-    .nav-links a {
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-    }
-    
-    .social-links a {
-        min-width: 44px;
-        min-height: 44px;
+    .theme-menu {
+        max-height: 90vh;
     }
 }
 
 /* High DPI Screens */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    /* Images will be sharper */
     img {
         image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Reduce Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
 

@@ -1,499 +1,238 @@
 // ================================
-// THEME SWITCHER - COMPLETE
+// THEME SWITCHER - MOBILE OPTIMIZED
 // ================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ================================
-    // DOM Elements
-    // ================================
     const themeToggle = document.getElementById('themeToggle');
     const themeMenu = document.getElementById('themeMenu');
     const closeThemeMenu = document.getElementById('closeThemeMenu');
     const themeOptions = document.querySelectorAll('.theme-option');
-    const body = document.body;
+    
+    // Detect mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem('portfolioTheme') || 'vibe-coder';
+    applyTheme(savedTheme);
     
     // ================================
-    // Configuration
+    // MOBILE-FRIENDLY EVENT HANDLING
     // ================================
-    const STORAGE_KEY = 'portfolioTheme';
-    const DEFAULT_THEME = 'vibe-coder';
-    const NOTIFICATION_DURATION = 3000; // 3 seconds
+    const toggleEvent = isTouch ? 'touchend' : 'click';
     
-    // Theme metadata
-    const themes = {
-        'vibe-coder': {
-            name: 'Vibe Coder',
-            emoji: '💻',
-            description: 'Dark with neon cyan & green'
-        },
-        'ocean-breeze': {
-            name: 'Ocean Breeze',
-            emoji: '🌊',
-            description: 'Professional blue & turquoise'
-        },
-        'sunset-glow': {
-            name: 'Sunset Glow',
-            emoji: '🌅',
-            description: 'Warm orange & purple'
-        }
-    };
-    
-    // ================================
-    // Initialize Theme
-    // ================================
-    function initializeTheme() {
-        // Load saved theme or use default
-        const savedTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
-        
-        // Validate theme exists
-        if (themes[savedTheme]) {
-            applyTheme(savedTheme, false); // false = no notification on page load
-        } else {
-            applyTheme(DEFAULT_THEME, false);
-        }
-        
-        console.log(` Theme initialized: ${savedTheme}`);
-    }
-    
-    // ================================
-    // Apply Theme
-    // ================================
-    function applyTheme(themeName, showNotification = true) {
-        // Set theme attribute on body
-        body.setAttribute('data-theme', themeName);
-        
-        // Save to localStorage
-        localStorage.setItem(STORAGE_KEY, themeName);
-        
-        // Update active state on theme options
-        updateActiveThemeOption(themeName);
-        
-        // Add smooth transition effect
-        body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
-        setTimeout(() => {
-            body.style.transition = '';
-        }, 500);
-        
-        // Show notification if requested
-        if (showNotification && themes[themeName]) {
-            showThemeNotification(themeName);
-        }
-        
-        // Track theme change (Google Analytics - if available)
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'theme_change', {
-                'event_category': 'Theme',
-                'event_label': themeName
-            });
-        }
-        
-        console.log(` Theme applied: ${themeName}`);
-    }
-    
-    // ================================
-    // Update Active Theme Option
-    // ================================
-    function updateActiveThemeOption(themeName) {
-        themeOptions.forEach(option => {
-            const optionTheme = option.getAttribute('data-theme');
-            
-            if (optionTheme === themeName) {
-                option.classList.add('active');
-                option.setAttribute('aria-pressed', 'true');
-            } else {
-                option.classList.remove('active');
-                option.setAttribute('aria-pressed', 'false');
-            }
-        });
-    }
-    
-    // ================================
-    // Toggle Theme Menu
-    // ================================
-    function toggleThemeMenu() {
-        const isActive = themeMenu.classList.toggle('active');
-        
-        // Update ARIA attributes
-        themeToggle.setAttribute('aria-expanded', isActive);
-        
-        // Add/remove body class to prevent scrolling when menu is open
-        if (isActive) {
-            body.style.overflow = 'hidden';
-        } else {
-            body.style.overflow = '';
-        }
-        
-        console.log(`Theme menu ${isActive ? 'opened' : 'closed'}`);
-    }
-    
-    // ================================
-    // Close Theme Menu
-    // ================================
-    function closeThemeMenuFunc() {
-        themeMenu.classList.remove('active');
-        themeToggle.setAttribute('aria-expanded', 'false');
-        body.style.overflow = '';
-    }
-    
-    // ================================
-    // Show Theme Change Notification
-    // ================================
-    function showThemeNotification(themeName) {
-        const theme = themes[themeName];
-        if (!theme) return;
-        
-        // Remove existing notification if any
-        const existingNotification = document.querySelector('.theme-notification');
-        if (existingNotification) {
-            existingNotification.remove();
-        }
-        
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = 'theme-notification';
-        notification.innerHTML = `
-            <i class="fas fa-check-circle"></i>
-            <span>${theme.emoji} <strong>${theme.name}</strong> activated!</span>
-        `;
-        
-        // Add to document
-        document.body.appendChild(notification);
-        
-        // Trigger show animation with slight delay
-        requestAnimationFrame(() => {
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 10);
-        });
-        
-        // Remove after duration
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                notification.remove();
-            }, 500);
-        }, NOTIFICATION_DURATION);
-    }
-    
-    // ================================
-    // Event Listeners
-    // ================================
-    
-    // Toggle button click
+    // Toggle theme menu
     if (themeToggle) {
-        themeToggle.addEventListener('click', (e) => {
+        themeToggle.addEventListener(toggleEvent, (e) => {
+            e.preventDefault();
             e.stopPropagation();
-            toggleThemeMenu();
-        });
-        
-        // Keyboard support for toggle button
-        themeToggle.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleThemeMenu();
-            }
+            themeMenu.classList.toggle('active');
+            console.log('Theme menu toggled:', themeMenu.classList.contains('active'));
         });
     }
     
-    // Close button click
+    // Close theme menu button
     if (closeThemeMenu) {
-        closeThemeMenu.addEventListener('click', (e) => {
+        closeThemeMenu.addEventListener(toggleEvent, (e) => {
+            e.preventDefault();
             e.stopPropagation();
-            closeThemeMenuFunc();
+            themeMenu.classList.remove('active');
         });
     }
     
-    // Theme option selection
+    // Close theme menu when clicking/tapping outside
+    document.addEventListener(toggleEvent, (e) => {
+        if (themeMenu && 
+            !themeMenu.contains(e.target) && 
+            !themeToggle.contains(e.target) &&
+            themeMenu.classList.contains('active')) {
+            themeMenu.classList.remove('active');
+        }
+    });
+    
+    // Theme selection
     themeOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            const selectedTheme = option.getAttribute('data-theme');
-            const currentTheme = body.getAttribute('data-theme');
+        option.addEventListener(toggleEvent, (e) => {
+            e.preventDefault();
+            const theme = option.getAttribute('data-theme');
             
-            // Don't do anything if clicking the same theme
-            if (selectedTheme === currentTheme) {
-                closeThemeMenuFunc();
+            // Don't do anything if same theme is selected
+            if (option.classList.contains('active')) {
+                themeMenu.classList.remove('active');
                 return;
             }
             
-            // Apply the new theme
-            applyTheme(selectedTheme, true);
+            applyTheme(theme);
+            localStorage.setItem('portfolioTheme', theme);
             
-            // Close menu with delay for better UX
+            // Update active state
+            themeOptions.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+            
+            // Close menu with delay
             setTimeout(() => {
-                closeThemeMenuFunc();
-            }, 500);
-        });
-        
-        // Keyboard support for theme options
-        option.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                option.click();
-            }
-        });
-    });
-    
-    // ================================
-    // Close Menu When Clicking Outside
-    // ================================
-    document.addEventListener('click', (e) => {
-        if (themeMenu && !themeMenu.contains(e.target) && !themeToggle.contains(e.target)) {
-            closeThemeMenuFunc();
-        }
-    });
-    
-    // Prevent menu from closing when clicking inside
-    if (themeMenu) {
-        themeMenu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-    }
-    
-    // ================================
-    // Keyboard Shortcuts
-    // ================================
-    document.addEventListener('keydown', (e) => {
-        // Ctrl/Cmd + K to toggle theme menu
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            toggleThemeMenu();
-        }
-        
-        // ESC to close theme menu
-        if (e.key === 'Escape') {
-            closeThemeMenuFunc();
-        }
-        
-        // Ctrl/Cmd + Shift + T to cycle through themes
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'T') {
-            e.preventDefault();
-            cycleTheme();
-        }
-    });
-    
-    // ================================
-    // Cycle Through Themes
-    // ================================
-    function cycleTheme() {
-        const themeNames = Object.keys(themes);
-        const currentTheme = body.getAttribute('data-theme') || DEFAULT_THEME;
-        const currentIndex = themeNames.indexOf(currentTheme);
-        const nextIndex = (currentIndex + 1) % themeNames.length;
-        const nextTheme = themeNames[nextIndex];
-        
-        applyTheme(nextTheme, true);
-    }
-    
-    // ================================
-    // Theme Cycling with Arrow Keys (when menu is open)
-    // ================================
-    if (themeMenu) {
-        themeMenu.addEventListener('keydown', (e) => {
-            const activeOption = document.querySelector('.theme-option.active');
+                themeMenu.classList.remove('active');
+            }, 300);
             
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                const nextOption = activeOption.nextElementSibling;
-                if (nextOption && nextOption.classList.contains('theme-option')) {
-                    nextOption.click();
-                }
-            }
+            // Show notification
+            showThemeNotification(theme);
             
-            if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                const prevOption = activeOption.previousElementSibling;
-                if (prevOption && prevOption.classList.contains('theme-option')) {
-                    prevOption.click();
-                }
+            // Lighter particle effect on mobile
+            if (!isMobile) {
+                createThemeChangeEffect();
             }
         });
-    }
-    
-    // ================================
-    // Listen for System Theme Changes (Optional)
-    // ================================
-    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    function handleSystemThemeChange(e) {
-        // Only auto-switch if user hasn't manually selected a theme
-        const hasUserPreference = localStorage.getItem(STORAGE_KEY);
-        
-        if (!hasUserPreference) {
-            const systemTheme = e.matches ? 'vibe-coder' : 'ocean-breeze';
-            applyTheme(systemTheme, false);
-            console.log(` System theme changed: ${systemTheme}`);
-        }
-    }
-    
-    // Uncomment to enable system theme detection
-    // darkModeMediaQuery.addEventListener('change', handleSystemThemeChange);
-    
-    // ================================
-    // Prevent FOUC (Flash of Unstyled Content)
-    // ================================
-    // Apply theme immediately before DOMContentLoaded
-    const quickTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
-    document.documentElement.setAttribute('data-theme', quickTheme);
-    
-    // ================================
-    // Export Functions (for console debugging)
-    // ================================
-    window.portfolioTheme = {
-        apply: applyTheme,
-        cycle: cycleTheme,
-        get current() {
-            return body.getAttribute('data-theme');
-        },
-        get available() {
-            return Object.keys(themes);
-        },
-        reset() {
-            localStorage.removeItem(STORAGE_KEY);
-            applyTheme(DEFAULT_THEME, true);
-            console.log(' Theme reset to default');
-        }
-    };
-    
-    // ================================
-    // Initialize on Page Load
-    // ================================
-    initializeTheme();
-    
-    // ================================
-    // Console Welcome Message
-    // ================================
-    console.log('%c Theme Switcher Loaded!', 'background: #00D9FF; color: #0A0E27; font-size: 14px; padding: 8px; font-weight: bold;');
-    console.log('%c Keyboard Shortcuts:', 'font-size: 12px; color: #00FF88; font-weight: bold;');
-    console.log('%c  • Ctrl/Cmd + K: Toggle theme menu', 'font-size: 11px; color: #B4BCD0;');
-    console.log('%c  • ESC: Close theme menu', 'font-size: 11px; color: #B4BCD0;');
-    console.log('%c  • Ctrl/Cmd + Shift + T: Cycle themes', 'font-size: 11px; color: #B4BCD0;');
-    console.log('%c Console Commands:', 'font-size: 12px; color: #FFB800; font-weight: bold;');
-    console.log('%c  • portfolioTheme.apply("theme-name"): Switch theme', 'font-size: 11px; color: #B4BCD0;');
-    console.log('%c  • portfolioTheme.cycle(): Cycle through themes', 'font-size: 11px; color: #B4BCD0;');
-    console.log('%c  • portfolioTheme.current: Get current theme', 'font-size: 11px; color: #B4BCD0;');
-    console.log('%c  • portfolioTheme.reset(): Reset to default', 'font-size: 11px; color: #B4BCD0;');
-    
-});
-
-// ================================
-// Smooth Transition on Page Load
-// ================================
-window.addEventListener('load', () => {
-    // Remove any loading states
-    document.body.classList.add('theme-loaded');
-    
-    // Add smooth transitions after page load
-    setTimeout(() => {
-        document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
-    }, 100);
-});
-
-// ================================
-// Handle Page Visibility Changes
-// ================================
-document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-        // Recheck theme when page becomes visible
-        const currentTheme = document.body.getAttribute('data-theme');
-        const savedTheme = localStorage.getItem('portfolioTheme');
-        
-        if (currentTheme !== savedTheme) {
-            console.log(' Theme sync detected');
-            document.body.setAttribute('data-theme', savedTheme);
-        }
-    }
-});
-
-// ================================
-// Performance Monitoring
-// ================================
-if ('performance' in window) {
-    window.addEventListener('load', () => {
-        const perfData = window.performance.timing;
-        const themeLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-        console.log(`⚡ Theme system loaded in ${themeLoadTime}ms`);
     });
-}
-
-// ================================
-// Error Handling
-// ================================
-window.addEventListener('error', (e) => {
-    if (e.filename && e.filename.includes('theme')) {
-        console.error('❌ Theme error:', e.message);
-    }
-});
-
-// ================================
-// Browser Storage Event (sync across tabs)
-// ================================
-window.addEventListener('storage', (e) => {
-    if (e.key === 'portfolioTheme' && e.newValue) {
-        console.log(' Theme changed in another tab');
-        document.body.setAttribute('data-theme', e.newValue);
+    
+    // Apply theme function
+    function applyTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
         
         // Update active option
-        const themeOptions = document.querySelectorAll('.theme-option');
         themeOptions.forEach(option => {
-            const optionTheme = option.getAttribute('data-theme');
-            if (optionTheme === e.newValue) {
+            if (option.getAttribute('data-theme') === theme) {
                 option.classList.add('active');
             } else {
                 option.classList.remove('active');
             }
         });
+        
+        // Add transition
+        document.body.style.transition = 'all 0.3s ease';
+        setTimeout(() => {
+            document.body.style.transition = '';
+        }, 300);
+    }
+    
+    // Theme change notification
+    function showThemeNotification(theme) {
+        const themeNames = {
+            'vibe-coder': 'Vibe Coder',
+            'ocean-breeze': 'Ocean Breeze',
+            'sunset-glow': 'Sunset Glow'
+        };
+        
+        const themeEmojis = {
+            'vibe-coder': '💻',
+            'ocean-breeze': '🌊',
+            'sunset-glow': '🌅'
+        };
+        
+        // Remove existing notification
+        const existing = document.querySelector('.theme-notification');
+        if (existing) {
+            existing.remove();
+        }
+        
+        // Create notification
+        const notification = document.createElement('div');
+        notification.className = 'theme-notification';
+        notification.innerHTML = `
+            <i class="fas fa-circle-check"></i>
+            <span>${themeEmojis[theme]} <strong>${themeNames[theme]}</strong> activated!</span>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 500);
+        }, 2000);
+    }
+    
+    // Theme change particle effect (Desktop only)
+    function createThemeChangeEffect() {
+        const colors = ['#00D9FF', '#00FF88', '#FF2E97', '#FFB800'];
+        const particleCount = 20;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            const size = 6 + Math.random() * 8;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            particle.style.cssText = `
+                position: fixed;
+                width: ${size}px;
+                height: ${size}px;
+                background: ${color};
+                border-radius: 50%;
+                left: 50%;
+                top: 50%;
+                pointer-events: none;
+                z-index: 99999;
+                box-shadow: 0 0 15px ${color};
+            `;
+            
+            document.body.appendChild(particle);
+            
+            const angle = (Math.PI * 2 * i) / particleCount;
+            const distance = 150 + Math.random() * 100;
+            
+            particle.animate([
+                {
+                    transform: 'translate(-50%, -50%) scale(0)',
+                    opacity: 1
+                },
+                {
+                    transform: `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px)) scale(1)`,
+                    opacity: 0
+                }
+            ], {
+                duration: 800,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            });
+            
+            setTimeout(() => particle.remove(), 800);
+        }
+    }
+    
+    // Keyboard shortcuts (Desktop only)
+    if (!isMobile && !isTouch) {
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + K
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                themeMenu.classList.toggle('active');
+            }
+            
+            // ESC
+            if (e.key === 'Escape') {
+                themeMenu.classList.remove('active');
+            }
+            
+            // Number keys 1-3
+            if (e.key >= '1' && e.key <= '3' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                const themeIndex = parseInt(e.key) - 1;
+                const themes = ['vibe-coder', 'ocean-breeze', 'sunset-glow'];
+                if (themes[themeIndex]) {
+                    applyTheme(themes[themeIndex]);
+                    localStorage.setItem('portfolioTheme', themes[themeIndex]);
+                    showThemeNotification(themes[themeIndex]);
+                    createThemeChangeEffect();
+                    
+                    themeOptions.forEach((opt, index) => {
+                        if (index === themeIndex) {
+                            opt.classList.add('active');
+                        } else {
+                            opt.classList.remove('active');
+                        }
+                    });
+                }
+            }
+        });
+    }
+    
+    console.log('✅ Theme switcher loaded!');
+    if (isMobile || isTouch) {
+        console.log('📱 Mobile mode - Touch events enabled');
+    } else {
+        console.log('💻 Desktop mode - Keyboard shortcuts enabled');
+        console.log('  • Ctrl/Cmd + K to toggle');
+        console.log('  • Ctrl/Cmd + 1/2/3 to switch');
     }
 });
-
-// ================================
-// Touch Device Support
-// ================================
-if ('ontouchstart' in window) {
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('touchstart', (e) => {
-            // Prevent double-tap zoom on mobile
-            e.preventDefault();
-        }, { passive: false });
-    }
-}
-
-// ================================
-// Reduced Motion Support
-// ================================
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-if (prefersReducedMotion) {
-    console.log(' Reduced motion detected - animations disabled');
-    
-    // Disable theme transition animations
-    const style = document.createElement('style');
-    style.textContent = `
-        body, .theme-menu, .theme-option, .theme-notification {
-            transition: none !important;
-            animation: none !important;
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// ================================
-// High Contrast Mode Support
-// ================================
-const prefersHighContrast = window.matchMedia('(prefers-contrast: high)').matches;
-
-if (prefersHighContrast) {
-    console.log('♿ High contrast mode detected');
-    document.body.classList.add('high-contrast');
-}
-
-// ================================
-// Theme Preload (Prevent FOUC)
-// ================================
-(function() {
-    const savedTheme = localStorage.getItem('portfolioTheme') || 'vibe-coder';
-    const html = document.documentElement;
-    html.setAttribute('data-theme', savedTheme);
-    html.style.visibility = 'visible';
-})();
