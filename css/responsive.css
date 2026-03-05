@@ -1,8 +1,7 @@
 /* ================================
-   RESPONSIVE DESIGN - MOBILE OPTIMIZED
+   RESPONSIVE DESIGN - CRITICAL FIXES
    ================================ */
 
-/* Ensure all elements scale properly */
 * {
     box-sizing: border-box;
 }
@@ -13,20 +12,19 @@ html {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Improve touch targets */
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Large Desktop (1200px and above) */
+/* Large Desktop */
 @media (min-width: 1200px) {
     .container {
         max-width: 1200px;
     }
 }
 
-/* Desktop (992px - 1199px) */
+/* Desktop */
 @media (max-width: 1199px) {
     .container {
         max-width: 960px;
@@ -57,7 +55,7 @@ body {
     }
 }
 
-/* Tablet (768px - 991px) */
+/* Tablet */
 @media (max-width: 991px) {
     html {
         font-size: 15px;
@@ -92,27 +90,33 @@ body {
 }
 
 /* ================================
-   MOBILE SPECIFIC FIXES (below 768px)
+   MOBILE FIXES (CRITICAL)
    ================================ */
 @media (max-width: 768px) {
     html {
-        font-size: 14px;
+        font-size: 16px;
     }
     
-    /* Disable intensive animations on mobile */
+    /* Disable animations on mobile */
     * {
         animation-duration: 0.3s !important;
         transition-duration: 0.3s !important;
     }
     
-    /* Disable parallax on mobile */
+    /* Stop parallax */
     .hero::before {
         animation: none !important;
+        opacity: 0.3 !important;
     }
     
     /* Navigation */
     .navbar {
-        padding: 12px 0;
+        padding: 10px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
     }
     
     .nav-links {
@@ -143,15 +147,13 @@ body {
     }
     
     .nav-links a {
-        display: block;
+        display: flex;
+        align-items: center;
         padding: 15px 20px;
         border-radius: 8px;
         transition: all 0.3s ease;
-        font-size: 1.1rem;
-        /* Larger touch targets */
-        min-height: 48px;
-        display: flex;
-        align-items: center;
+        font-size: 1rem;
+        min-height: 50px;
     }
     
     .nav-links a:hover,
@@ -159,6 +161,7 @@ body {
         background: rgba(0, 217, 255, 0.1);
     }
     
+    /* Hamburger */
     .hamburger {
         display: flex;
         flex-direction: column;
@@ -166,9 +169,8 @@ body {
         cursor: pointer;
         z-index: 1000;
         padding: 10px;
-        /* Larger touch target */
-        min-width: 48px;
-        min-height: 48px;
+        min-width: 50px;
+        min-height: 50px;
         justify-content: center;
         align-items: center;
     }
@@ -194,83 +196,138 @@ body {
         transform: rotate(-45deg) translate(7px, -7px);
     }
     
-    /* Hero Section */
+    /* Hero Section - CRITICAL FIX */
     .hero {
         min-height: auto;
-        padding: 40px 0;
+        padding: 80px 0 50px; /* Add top padding for fixed navbar */
+        margin-top: 60px; /* Offset for fixed navbar */
     }
     
     .hero .container {
         grid-template-columns: 1fr;
         gap: 30px;
+        padding: 0 20px;
     }
     
     .hero-content {
         text-align: center;
+        order: 2; /* Text comes after image */
     }
     
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         margin-bottom: 15px;
+        line-height: 1.3;
     }
     
     .tagline {
-        font-size: 1rem;
+        font-size: 0.95rem;
         flex-wrap: wrap;
         justify-content: center;
+        margin-bottom: 15px;
+        line-height: 1.5;
+        gap: 8px;
     }
     
     .description {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+        line-height: 1.6;
     }
     
     .hero-image {
-        order: -1;
+        order: 1; /* Image comes first */
+        margin: 0 auto 20px;
     }
     
     .hero-image img {
-        width: 220px;
-        height: 220px;
+        width: 200px;
+        height: 200px;
         margin: 0 auto;
-        /* Reduce animation intensity */
-        animation-duration: 6s !important;
+        animation: none !important; /* Stop animation on mobile */
     }
     
+    /* Buttons - CRITICAL FIX */
     .hero-buttons {
+        display: flex;
         flex-direction: column;
         gap: 12px;
         width: 100%;
+        margin-top: 20px;
+        position: relative;
+        z-index: 1;
     }
     
     .hero-buttons .btn {
         width: 100%;
         justify-content: center;
-        /* Better touch target */
-        min-height: 48px;
+        min-height: 50px;
+        padding: 14px 24px;
+        font-size: 0.95rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
     }
     
     /* Sections */
     section {
         padding: 50px 0;
+        clear: both;
+        position: relative;
+        z-index: 1;
     }
     
     .section-title {
         font-size: 1.8rem;
         margin-bottom: 30px;
+        line-height: 1.2;
+    }
+    
+    .section-title i {
+        font-size: 1.6rem;
+    }
+    
+    /* Container */
+    .container {
+        padding: 0 20px;
+        max-width: 100%;
+        margin: 0 auto;
     }
     
     /* About Section */
+    .about {
+        margin-top: 0;
+        padding-top: 50px;
+    }
+    
     .about-content {
         grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .about-text p {
+        margin-bottom: 20px;
+        line-height: 1.7;
+        font-size: 0.95rem;
     }
     
     .about-stats {
         grid-template-columns: 1fr;
         gap: 15px;
+        margin-top: 20px;
     }
     
     .stat-item {
         padding: 20px 15px;
+    }
+    
+    .stat-icon {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .stat-item h3 {
+        font-size: 2rem;
     }
     
     /* Skills Section */
@@ -283,123 +340,193 @@ body {
         padding: 25px 20px;
     }
     
+    .skill-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .skill-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .skill-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .skill-tags {
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .skill-tags span {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+    }
+    
     /* Projects Section */
     .projects-grid {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 20px;
     }
     
-    /* Disable 3D tilt on mobile */
     .project-card {
         transform: none !important;
+    }
+    
+    .project-image {
+        height: 180px;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .project-info {
+        padding: 20px 18px;
+    }
+    
+    .project-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .project-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .project-tags {
+        gap: 8px;
+        margin: 12px 0 15px;
+    }
+    
+    .tag {
+        padding: 5px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .project-links {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .project-links .btn-small {
+        flex: 1;
+        min-width: calc(50% - 5px);
     }
     
     /* Contact Section */
     .contact-content {
         grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .contact-details {
+        gap: 15px;
+    }
+    
+    .contact-item {
+        padding: 15px;
+    }
+    
+    .contact-item .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
     }
     
     .contact-form {
         padding: 30px 20px;
     }
     
-    /* Improve form inputs for mobile */
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
     .input-with-icon input,
     .input-with-icon textarea {
         font-size: 16px; /* Prevents zoom on iOS */
-        padding: 15px 15px 15px 45px;
+        padding: 14px 14px 14px 42px;
     }
     
     /* Footer */
+    .footer {
+        padding: 40px 0;
+    }
+    
+    .footer-content {
+        gap: 20px;
+    }
+    
     .social-links {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 12px;
     }
     
     .social-links a {
-        /* Better touch targets */
-        min-width: 48px;
-        min-height: 48px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
     }
     
-    /* ================================
-       THEME SWITCHER - MOBILE FIX
-       ================================ */
+    /* Theme Switcher */
     .theme-switcher {
-        bottom: 100px;
+        bottom: 20px;
         right: 15px;
         z-index: 9999;
     }
     
     .theme-toggle {
-        width: 60px;
-        height: 60px;
-        /* Better touch target */
-        min-width: 60px;
-        min-height: 60px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-    
-    .theme-menu {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: auto;
-        width: 100%;
-        max-height: 70vh;
-        border-radius: 20px 20px 0 0;
-        transform: translateY(100%);
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .theme-menu.active {
-        transform: translateY(0);
-    }
-    
-    .theme-option {
-        padding: 20px;
-        margin-bottom: 12px;
-        /* Better touch target */
-        min-height: 80px;
-    }
-    
-    .close-theme-menu {
-        /* Better touch target */
-        min-width: 40px;
-        min-height: 40px;
+        width: 56px;
+        height: 56px;
+        min-width: 56px;
+        min-height: 56px;
     }
     
     /* Scroll to Top */
     .scroll-top-btn {
-        bottom: 20px;
+        bottom: 90px;
         right: 15px;
-        width: 50px;
-        height: 50px;
-        font-size: 18px;
-        /* Better touch target */
-        min-width: 50px;
-        min-height: 50px;
+        width: 48px;
+        height: 48px;
+        font-size: 16px;
+        min-width: 48px;
+        min-height: 48px;
     }
     
-    /* Typography Adjustments */
+    /* Typography */
+    body {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    /* Buttons */
     .btn {
         padding: 12px 24px;
         font-size: 0.95rem;
-        /* Better touch target */
         min-height: 48px;
+        border-radius: 6px;
+    }
+    
+    .btn i {
+        font-size: 1rem;
+    }
+    
+    .btn-small {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+        min-height: 42px;
     }
 }
 
-/* Small Mobile (below 480px) */
+/* Small Mobile */
 @media (max-width: 480px) {
     html {
-        font-size: 13px;
+        font-size: 15px;
     }
     
     .container {
-        padding: 0 15px;
+        padding: 0 16px;
     }
     
     section {
@@ -411,8 +538,12 @@ body {
         margin-bottom: 25px;
     }
     
+    .hero {
+        padding: 70px 0 40px;
+    }
+    
     .hero-content h1 {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
     
     .tagline {
@@ -428,57 +559,47 @@ body {
         font-size: 1.4rem;
     }
     
-    .logo-icon {
-        font-size: 1.2rem;
-    }
-    
     .btn {
-        padding: 10px 20px;
+        padding: 12px 20px;
         font-size: 0.9rem;
     }
     
     .stat-item h3 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .skill-icon {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
     }
     
     .contact-form {
-        padding: 25px 15px;
-    }
-    
-    .input-with-icon input,
-    .input-with-icon textarea {
-        padding: 12px 12px 12px 40px;
-        font-size: 16px;
+        padding: 25px 18px;
     }
     
     .nav-links {
-        width: 100%;
         max-width: 280px;
-        padding: 25px 15px;
+    }
+    
+    .scroll-top-btn {
+        width: 46px;
+        height: 46px;
+        bottom: 85px;
     }
     
     .theme-toggle {
-        width: 55px;
-        height: 55px;
-    }
-    
-    .theme-menu {
-        max-height: 60vh;
+        width: 54px;
+        height: 54px;
     }
 }
 
-/* Extra Small Mobile (below 375px) */
+/* Extra Small Mobile */
 @media (max-width: 375px) {
     .hero-content h1 {
         font-size: 1.5rem;
     }
     
     .section-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
     
     .hero-image img {
@@ -487,20 +608,47 @@ body {
     }
     
     .stat-item h3 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
     .nav-links {
-        width: 100%;
         max-width: 100%;
     }
 }
 
-/* ================================
-   TOUCH DEVICE OPTIMIZATIONS
-   ================================ */
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        padding: 30px 0;
+        margin-top: 60px;
+    }
+    
+    .hero .container {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .hero-content {
+        text-align: left;
+        order: 1;
+    }
+    
+    .hero-image {
+        order: 2;
+    }
+    
+    .hero-image img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    section {
+        padding: 30px 0;
+    }
+}
+
+/* Touch Device Optimizations */
 @media (hover: none) and (pointer: coarse) {
-    /* All interactive elements get bigger touch targets */
     button,
     a,
     .btn,
@@ -514,69 +662,20 @@ body {
         min-height: 48px;
     }
     
-    /* Disable hover-only effects */
     .project-card:hover {
         transform: none;
     }
     
     .skill-card:hover {
-        transform: translateY(-5px);
+        transform: none;
     }
     
-    /* Simplify animations for performance */
     * {
         animation-duration: 0.3s !important;
     }
-    
-    /* Disable particle effects on mobile */
-    .particle {
-        display: none;
-    }
 }
 
-/* Landscape Mode (Mobile in Landscape) */
-@media (max-height: 600px) and (orientation: landscape) {
-    .hero {
-        min-height: auto;
-        padding: 30px 0;
-    }
-    
-    .hero .container {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-    }
-    
-    .hero-image {
-        order: 2;
-    }
-    
-    .hero-image img {
-        width: 180px;
-        height: 180px;
-    }
-    
-    section {
-        padding: 40px 0;
-    }
-    
-    .nav-links {
-        height: 100vh;
-        padding: 20px 15px;
-    }
-    
-    .theme-menu {
-        max-height: 90vh;
-    }
-}
-
-/* High DPI Screens */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    img {
-        image-rendering: -webkit-optimize-contrast;
-    }
-}
-
-/* Reduce Motion Preference */
+/* Reduce Motion */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -585,41 +684,5 @@ body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
-    }
-}
-
-/* Print Styles */
-@media print {
-    .navbar,
-    .theme-switcher,
-    .scroll-top-btn,
-    .hero-buttons,
-    .contact-form,
-    footer,
-    .hamburger {
-        display: none !important;
-    }
-    
-    body {
-        background: white;
-        color: black;
-    }
-    
-    .hero,
-    .about,
-    .skills,
-    .projects {
-        background: white;
-        color: black;
-        page-break-after: always;
-    }
-    
-    .section-title {
-        color: black;
-    }
-    
-    a {
-        text-decoration: underline;
-        color: blue;
     }
 }

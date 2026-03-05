@@ -1,16 +1,12 @@
 /* ================================
-   SUPER COOL ICON ANIMATIONS 🚀
+   SLOWER ICON ANIMATIONS
    ================================ */
 
 /* Base Icon Styles */
 i {
     display: inline-block;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease; /* Changed from 0.3s to 0.5s */
 }
-
-/* ================================
-   HOVER EFFECTS
-   ================================ */
 
 /* Bounce and Glow */
 @keyframes bounceGlow {
@@ -29,7 +25,7 @@ i {
 }
 
 .icon-bounce-glow {
-    animation: bounceGlow 1s ease-in-out;
+    animation: bounceGlow 1.5s ease-in-out; /* Changed from 1s to 1.5s */
 }
 
 /* Rotate with Color Shift */
@@ -49,7 +45,7 @@ i {
 }
 
 .icon-rotate-color {
-    animation: rotateColorShift 2s ease-in-out infinite;
+    animation: rotateColorShift 3s ease-in-out infinite; /* Changed from 2s to 3s */
 }
 
 /* Pulse with Scale */
@@ -65,7 +61,7 @@ i {
 }
 
 .icon-pulse-scale {
-    animation: pulseScale 1.5s ease-in-out infinite;
+    animation: pulseScale 2.5s ease-in-out infinite; /* Changed from 1.5s to 2.5s */
 }
 
 /* Wiggle Animation */
@@ -76,7 +72,7 @@ i {
 }
 
 .icon-wiggle {
-    animation: wiggle 0.5s ease-in-out infinite;
+    animation: wiggle 0.8s ease-in-out infinite; /* Changed from 0.5s to 0.8s */
 }
 
 /* Flip 3D */
@@ -90,7 +86,7 @@ i {
 }
 
 .icon-flip3d {
-    animation: flip3D 1s ease-in-out;
+    animation: flip3D 1.5s ease-in-out; /* Changed from 1s to 1.5s */
 }
 
 /* Elastic Bounce */
@@ -110,7 +106,7 @@ i {
 }
 
 .icon-elastic {
-    animation: elasticBounce 0.6s ease-in-out;
+    animation: elasticBounce 1s ease-in-out; /* Changed from 0.6s to 1s */
 }
 
 /* Neon Glow Pulse */
@@ -131,7 +127,7 @@ i {
 }
 
 .icon-neon {
-    animation: neonPulse 2s ease-in-out infinite;
+    animation: neonPulse 3s ease-in-out infinite; /* Changed from 2s to 3s */
 }
 
 /* Levitate */
@@ -145,25 +141,7 @@ i {
 }
 
 .icon-levitate {
-    animation: levitate 3s ease-in-out infinite;
-}
-
-/* Shake Crazy */
-@keyframes shakeCrazy {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    10% { transform: translate(-5px, -5px) rotate(-5deg); }
-    20% { transform: translate(5px, 5px) rotate(5deg); }
-    30% { transform: translate(-5px, 5px) rotate(-5deg); }
-    40% { transform: translate(5px, -5px) rotate(5deg); }
-    50% { transform: translate(-5px, 0) rotate(-5deg); }
-    60% { transform: translate(5px, 0) rotate(5deg); }
-    70% { transform: translate(0, -5px) rotate(-5deg); }
-    80% { transform: translate(0, 5px) rotate(5deg); }
-    90% { transform: translate(-5px, -5px) rotate(-5deg); }
-}
-
-.icon-shake-crazy {
-    animation: shakeCrazy 0.5s ease-in-out;
+    animation: levitate 4s ease-in-out infinite; /* Changed from 3s to 4s */
 }
 
 /* Rainbow Spin */
@@ -179,7 +157,7 @@ i {
 }
 
 .icon-rainbow {
-    animation: rainbowSpin 2s linear infinite;
+    animation: rainbowSpin 4s linear infinite; /* Changed from 2s to 4s */
 }
 
 /* Heartbeat Strong */
@@ -196,7 +174,7 @@ i {
 }
 
 .icon-heartbeat-strong {
-    animation: heartbeatStrong 1.5s ease-in-out infinite;
+    animation: heartbeatStrong 2s ease-in-out infinite; /* Changed from 1.5s to 2s */
 }
 
 /* Jello */
@@ -222,31 +200,7 @@ i {
 }
 
 .icon-jello {
-    animation: jello 1s ease-in-out;
-}
-
-/* Swing Pendulum */
-@keyframes swingPendulum {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    20% {
-        transform: rotate(15deg);
-    }
-    40% {
-        transform: rotate(-10deg);
-    }
-    60% {
-        transform: rotate(5deg);
-    }
-    80% {
-        transform: rotate(-5deg);
-    }
-}
-
-.icon-swing {
-    transform-origin: top center;
-    animation: swingPendulum 1s ease-in-out;
+    animation: jello 1.5s ease-in-out; /* Changed from 1s to 1.5s */
 }
 
 /* Tada Effect */
@@ -269,7 +223,7 @@ i {
 }
 
 .icon-tada {
-    animation: tada 1s ease-in-out;
+    animation: tada 1.5s ease-in-out; /* Changed from 1s to 1.5s */
 }
 
 /* Flash Effect */
@@ -283,7 +237,7 @@ i {
 }
 
 .icon-flash {
-    animation: flash 1s ease-in-out;
+    animation: flash 1.5s ease-in-out; /* Changed from 1s to 1.5s */
 }
 
 /* Rubber Band */
@@ -309,103 +263,92 @@ i {
 }
 
 .icon-rubber {
-    animation: rubberBand 1s ease-in-out;
+    animation: rubberBand 1.5s ease-in-out; /* Changed from 1s to 1.5s */
 }
 
-/* ================================
-   CONTINUOUS ANIMATIONS
-   ================================ */
-
-/* Apply to specific icons */
+/* Continuous Animations - SLOWER */
 .fa-code {
-    animation: pulseScale 2s ease-in-out infinite;
+    animation: pulseScale 3s ease-in-out infinite; /* Changed from 2s to 3s */
 }
 
 .fa-heart {
-    animation: heartbeatStrong 1.5s ease-in-out infinite;
-    color: #e74c3c;
+    animation: heartbeatStrong 2.5s ease-in-out infinite; /* Changed from 1.5s to 2.5s */
 }
 
 .fa-bolt,
 .fa-lightning-bolt {
-    animation: flash 2s ease-in-out infinite;
-    color: #FFB800;
+    animation: flash 3s ease-in-out infinite; /* Changed from 2s to 3s */
 }
 
 .fa-rocket {
-    animation: levitate 3s ease-in-out infinite;
+    animation: levitate 5s ease-in-out infinite; /* Changed from 3s to 5s */
 }
 
 .fa-star {
-    animation: neonPulse 2s ease-in-out infinite;
-    color: #FFB800;
+    animation: neonPulse 3s ease-in-out infinite; /* Changed from 2s to 3s */
 }
 
 .fa-fire {
-    animation: wiggle 0.5s ease-in-out infinite;
-    color: #FF2E97;
+    animation: wiggle 1s ease-in-out infinite; /* Changed from 0.5s to 1s */
 }
 
 .fa-sparkles {
-    animation: rainbowSpin 3s linear infinite;
+    animation: rainbowSpin 5s linear infinite; /* Changed from 3s to 5s */
 }
 
-/* ================================
-   HOVER EFFECTS FOR SPECIFIC ELEMENTS
-   ================================ */
-
+/* Hover Effects - SLOWER */
 .skill-icon:hover i {
-    animation: tada 0.8s ease-in-out;
+    animation: tada 1.2s ease-in-out; /* Changed from 0.8s to 1.2s */
 }
 
 .stat-icon:hover {
-    animation: elasticBounce 0.6s ease-in-out;
+    animation: elasticBounce 1s ease-in-out; /* Changed from 0.6s to 1s */
 }
 
 .social-links a:hover i {
-    animation: rotateColorShift 0.6s ease-in-out;
+    animation: rotateColorShift 1s ease-in-out; /* Changed from 0.6s to 1s */
 }
 
 .contact-item:hover .icon i {
-    animation: bounceGlow 0.8s ease-in-out;
+    animation: bounceGlow 1.2s ease-in-out; /* Changed from 0.8s to 1.2s */
 }
 
 .project-tags .tag:hover i {
-    animation: flip3D 0.6s ease-in-out;
+    animation: flip3D 1s ease-in-out; /* Changed from 0.6s to 1s */
 }
 
 .nav-links a:hover i {
-    animation: jello 0.6s ease-in-out;
+    animation: jello 1s ease-in-out; /* Changed from 0.6s to 1s */
 }
 
 .btn:hover i {
-    animation: tada 0.5s ease-in-out;
+    animation: tada 0.8s ease-in-out; /* Changed from 0.5s to 0.8s */
 }
 
 .logo:hover .logo-icon {
-    animation: rainbowSpin 1s linear;
+    animation: rainbowSpin 1.5s linear; /* Changed from 1s to 1.5s */
 }
 
-/* ================================
-   PARTICLE EFFECT STYLES
-   ================================ */
-.particle {
-    position: fixed;
-    pointer-events: none;
-    z-index: 99999;
-}
-
-/* ================================
-   RESPONSIVE ANIMATIONS
-   ================================ */
+/* Mobile - Disable most animations */
 @media (max-width: 768px) {
-    /* Reduce animation intensity on mobile for performance */
     * {
         animation-duration: 0.5s !important;
     }
+    
+    /* Disable continuous animations on mobile */
+    .fa-code,
+    .fa-heart,
+    .fa-bolt,
+    .fa-lightning-bolt,
+    .fa-rocket,
+    .fa-star,
+    .fa-fire,
+    .fa-sparkles {
+        animation: none !important;
+    }
 }
 
-/* Respect reduced motion preferences */
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation: none !important;

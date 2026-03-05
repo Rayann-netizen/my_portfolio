@@ -1,5 +1,5 @@
 // ================================
-// THEME SWITCHER - MOBILE OPTIMIZED
+// THEME SWITCHER - MOBILE OPTIMIZED WITH BACKDROP
 // ================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,13 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     
+    // Create backdrop for mobile
+    let backdrop = null;
+    if (isMobile || isTouch) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'theme-backdrop';
+        document.body.appendChild(backdrop);
+    }
+    
     // Load saved theme
     const savedTheme = localStorage.getItem('portfolioTheme') || 'vibe-coder';
     applyTheme(savedTheme);
     
-    // ================================
-    // MOBILE-FRIENDLY EVENT HANDLING
-    // ================================
+    // Event type
     const toggleEvent = isTouch ? 'touchend' : 'click';
     
     // Toggle theme menu
@@ -26,8 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.addEventListener(toggleEvent, (e) => {
             e.preventDefault();
             e.stopPropagation();
-            themeMenu.classList.toggle('active');
-            console.log('Theme menu toggled:', themeMenu.classList.contains('active'));
+            const isActive = themeMenu.classList.toggle('active');
+            
+            if (backdrop) {
+                backdrop.classList.toggle('active', isActive);
+            }
+            
+            // Prevent body scroll when menu is open on mobile
+            if (isMobile || isTouch) {
+                document.body.style.overflow = isActive ? 'hidden' : '';
+            }
+            
+            console.log('Theme menu:', isActive ? 'OPENED' : 'CLOSED');
         });
     }
     
@@ -36,7 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
         closeThemeMenu.addEventListener(toggleEvent, (e) => {
             e.preventDefault();
             e.stopPropagation();
-            themeMenu.classList.remove('active');
+            closeMenu();
+        });
+    }
+    
+    // Close on backdrop click
+    if (backdrop) {
+        backdrop.addEventListener(toggleEvent, (e) => {
+            e.preventDefault();
+            closeMenu();
         });
     }
     
@@ -46,19 +70,32 @@ document.addEventListener('DOMContentLoaded', () => {
             !themeMenu.contains(e.target) && 
             !themeToggle.contains(e.target) &&
             themeMenu.classList.contains('active')) {
-            themeMenu.classList.remove('active');
+            closeMenu();
         }
     });
+    
+    // Close menu function
+    function closeMenu() {
+        themeMenu.classList.remove('active');
+        if (backdrop) {
+            backdrop.classList.remove('active');
+        }
+        if (isMobile || isTouch) {
+            document.body.style.overflow = '';
+        }
+    }
     
     // Theme selection
     themeOptions.forEach(option => {
         option.addEventListener(toggleEvent, (e) => {
             e.preventDefault();
+            e.stopPropagation();
+            
             const theme = option.getAttribute('data-theme');
             
             // Don't do anything if same theme is selected
             if (option.classList.contains('active')) {
-                themeMenu.classList.remove('active');
+                closeMenu();
                 return;
             }
             
@@ -69,18 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
             themeOptions.forEach(opt => opt.classList.remove('active'));
             option.classList.add('active');
             
-            // Close menu with delay
-            setTimeout(() => {
-                themeMenu.classList.remove('active');
-            }, 300);
-            
             // Show notification
             showThemeNotification(theme);
             
-            // Lighter particle effect on mobile
-            if (!isMobile) {
+            // Particle effect (desktop only)
+            if (!isMobile && !isTouch) {
                 createThemeChangeEffect();
             }
+            
+            // Close menu with delay
+            setTimeout(() => {
+                closeMenu();
+            }, 500);
         });
     });
     
@@ -97,14 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Add transition
         document.body.style.transition = 'all 0.3s ease';
         setTimeout(() => {
             document.body.style.transition = '';
         }, 300);
     }
     
-    // Theme change notification
+    // Theme notification
     function showThemeNotification(theme) {
         const themeNames = {
             'vibe-coder': 'Vibe Coder',
@@ -118,13 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'sunset-glow': '🌅'
         };
         
-        // Remove existing notification
         const existing = document.querySelector('.theme-notification');
-        if (existing) {
-            existing.remove();
-        }
+        if (existing) existing.remove();
         
-        // Create notification
         const notification = document.createElement('div');
         notification.className = 'theme-notification';
         notification.innerHTML = `
@@ -134,17 +166,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.body.appendChild(notification);
         
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 10);
-        
+        setTimeout(() => notification.classList.add('show'), 10);
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 500);
-        }, 2000);
+        }, 2500);
     }
     
-    // Theme change particle effect (Desktop only)
+    // Particle effect (desktop only)
     function createThemeChangeEffect() {
         const colors = ['#00D9FF', '#00FF88', '#FF2E97', '#FFB800'];
         const particleCount = 20;
@@ -173,14 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const distance = 150 + Math.random() * 100;
             
             particle.animate([
-                {
-                    transform: 'translate(-50%, -50%) scale(0)',
-                    opacity: 1
-                },
-                {
-                    transform: `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px)) scale(1)`,
-                    opacity: 0
-                }
+                { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
+                { transform: `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px)) scale(1)`, opacity: 0 }
             ], {
                 duration: 800,
                 easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
@@ -190,37 +213,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Keyboard shortcuts (Desktop only)
+    // Keyboard shortcuts (desktop only)
     if (!isMobile && !isTouch) {
         document.addEventListener('keydown', (e) => {
-            // Ctrl/Cmd + K
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
-                themeMenu.classList.toggle('active');
+                const isActive = themeMenu.classList.toggle('active');
+                if (backdrop) backdrop.classList.toggle('active', isActive);
             }
             
-            // ESC
             if (e.key === 'Escape') {
-                themeMenu.classList.remove('active');
+                closeMenu();
             }
             
-            // Number keys 1-3
             if (e.key >= '1' && e.key <= '3' && (e.ctrlKey || e.metaKey)) {
                 e.preventDefault();
-                const themeIndex = parseInt(e.key) - 1;
                 const themes = ['vibe-coder', 'ocean-breeze', 'sunset-glow'];
+                const themeIndex = parseInt(e.key) - 1;
                 if (themes[themeIndex]) {
                     applyTheme(themes[themeIndex]);
                     localStorage.setItem('portfolioTheme', themes[themeIndex]);
                     showThemeNotification(themes[themeIndex]);
                     createThemeChangeEffect();
-                    
-                    themeOptions.forEach((opt, index) => {
-                        if (index === themeIndex) {
-                            opt.classList.add('active');
-                        } else {
-                            opt.classList.remove('active');
-                        }
+                    themeOptions.forEach((opt, i) => {
+                        opt.classList.toggle('active', i === themeIndex);
                     });
                 }
             }
@@ -228,11 +244,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     console.log('✅ Theme switcher loaded!');
-    if (isMobile || isTouch) {
-        console.log('📱 Mobile mode - Touch events enabled');
-    } else {
-        console.log('💻 Desktop mode - Keyboard shortcuts enabled');
-        console.log('  • Ctrl/Cmd + K to toggle');
-        console.log('  • Ctrl/Cmd + 1/2/3 to switch');
-    }
+    console.log(isMobile || isTouch ? '📱 Mobile mode' : '💻 Desktop mode');
 });

@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log(`Device: ${isMobile ? 'Mobile' : 'Desktop'}, Touch: ${isTouch}`);
     
-    // Skip intensive effects on mobile or reduced motion
     if (prefersReducedMotion) {
         console.log('⚠️ Reduced motion preference detected - Disabling effects');
         return;
@@ -46,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. PARTICLE EXPLOSION (Lighter on Mobile)
     // ================================
     function createParticleExplosion(x, y, color) {
-        const particleCount = isMobile ? 10 : 20; // Fewer particles on mobile
+        const particleCount = isMobile ? 10 : 20;
         
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
@@ -131,18 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
             glitchStyle.id = 'glitch-style';
             glitchStyle.textContent = `
                 @keyframes glitch {
-                    0% {
-                        transform: translate(0);
-                    }
-                    33% {
-                        transform: translate(-2px, 2px);
-                    }
-                    66% {
-                        transform: translate(2px, -2px);
-                    }
-                    100% {
-                        transform: translate(0);
-                    }
+                    0% { transform: translate(0); }
+                    33% { transform: translate(-2px, 2px); }
+                    66% { transform: translate(2px, -2px); }
+                    100% { transform: translate(0); }
                 }
             `;
             document.head.appendChild(glitchStyle);
