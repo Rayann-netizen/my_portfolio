@@ -1700,3 +1700,43 @@ i {
         animation: none !important;
     }
 }
+
+/* ================================
+   FIX: REMOVE UNDERLINES FROM CONTACT LINKS
+   ================================ */
+
+/* Remove underlines from all contact item links */
+.contact-item a,
+.contact-details a {
+    text-decoration: none !important;
+    color: var(--text-secondary);
+    transition: all 0.5s ease;
+}
+
+.contact-item a:hover,
+.contact-details a:hover {
+    color: var(--primary-color);
+    text-decoration: none !important;
+}
+
+/* Ensure paragraphs in contact items have no underline */
+.contact-item p,
+.contact-item p a {
+    text-decoration: none !important;
+}
+
+/* Remove default link styling */
+.contact-item a:link,
+.contact-item a:visited {
+    text-decoration: none;
+}
+
+/* Fix for any nested links */
+.contact-details .contact-item div a {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.contact-details .contact-item div a:hover {
+    color: var(--primary-color);
+}
